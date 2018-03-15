@@ -1,6 +1,8 @@
+import g4p_controls.*;
+
 int gridSize = 10;
 int zoomFactor = 1;
-
+int sX, sY;
 public class Vector2f {
   float x, y;
 
@@ -13,6 +15,8 @@ public class Vector2f {
 Vector2f add(Vector2f v1, Vector2f v2) {
   float x = v1.x + v2.x;
   float y = v1.y + v2.y;
+  
+
   return new Vector2f(x, y);
 }
 
@@ -81,6 +85,8 @@ void mouseWheel(MouseEvent event) {
 }
 
 ArrayList<Vector2f> vectors = new ArrayList();
+ArrayList<String> listVectors = new ArrayList();
+
 void mouseClicked() {
   float x = (mouseX - width / 2.0) / gridSize;
   float y = -(mouseY - height / 2.0) / gridSize;
@@ -103,7 +109,7 @@ void drawArrow(Vector2f v) {
   float alpha = (float)Math.atan2(v.y, v.x);
   float x = v.x * gridSize;
   float y = v.y * gridSize;
-  print(PI / 2 + alpha);
+  //print(PI / 2 + alpha);
   pushMatrix();
   fill(255, 0, 0);
   translate(x, y);
@@ -128,6 +134,7 @@ void printLabel(float x, float y) {
 
 void setup() {
   size(1200, 720);
+   createGUI();
 }
 
 void draw() {
@@ -138,5 +145,6 @@ void draw() {
   /* y = 2x + 4
    * m = 2, c = 4
    */
-  drawVector();
+  //drawVector();
+  print(dot (new Vector2f(8,6),new Vector2f(3,6)));
 }
