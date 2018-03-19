@@ -4,7 +4,7 @@ int gridSize = 10;
 int zoomFactor = 1;
 int sX, sY;
 public class Vector2f {
-  float x, y;
+  float x, y;   
 
   public Vector2f(float x, float y) {
     this.x = x;
@@ -85,7 +85,6 @@ void mouseWheel(MouseEvent event) {
 }
 
 ArrayList<Vector2f> vectors = new ArrayList();
-ArrayList<String> listVectors = new ArrayList();
 
 void mouseClicked() {
   float x = (mouseX - width / 2.0) / gridSize;
@@ -145,6 +144,8 @@ void draw() {
   /* y = 2x + 4
    * m = 2, c = 4
    */
-  //drawVector();
-  print(dot (new Vector2f(8,6),new Vector2f(3,6)));
+  drawVector();
+  //Vector2f x= mult(10,new Vector2f(8, 6)); 
+  //print(x.x +" " +x.y);
+  //noLoop();
 }
