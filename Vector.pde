@@ -92,16 +92,27 @@ void mouseClicked() {
   vectors.add(new Vector2f(x, y));
 }
 
-void drawVector() {
-  pushMatrix();
-  stroke(255, 0, 0);
-  strokeWeight(1.2);
-  for (Vector2f vector : vectors) {
-    line(0, 0, vector.x * gridSize, vector.y * gridSize);
-    drawArrow(vector);
-    printLabel(vector.x, vector.y);
+void drawVector(int pilih) {
+  
+  if(pilih==1){
+    pushMatrix();
+    stroke(255, 0, 0);
+    strokeWeight(1.2);
+    for (Vector2f vector : vectors) {
+      line(0, 0, vector.x * gridSize, vector.y * gridSize);
+      drawArrow(vector);
+      printLabel(vector.x, vector.y);
+    }
+    popMatrix();
   }
-  popMatrix();
+  else if(pilih==2){
+    stroke(255, 0, 255);
+     strokeWeight(1.2);
+    line(0, 0, hasilVector.x * gridSize, hasilVector.y * gridSize);
+    if(hasilVector.y!=0 &&hasilVector.x!=0)drawArrow(hasilVector);
+    printLabel(hasilVector.x, hasilVector.y);
+  }
+  
 }
 
 void drawArrow(Vector2f v) {
@@ -135,6 +146,35 @@ void setup() {
   size(1200, 720);
    createGUI();
 }
+//GUi 
+int indekVa=-1;
+int indekVb=-1;
+Vector2f Va,Vb,hasilVector= new Vector2f(0,0);
+
+void pilihMenu(int menu){
+  switch(menu){
+  case 1:
+    hasilVector=add(Va, Vb);
+    drawVector(2);
+  break;
+  case 2:
+    hasilVector=sub(Va, Vb);
+    drawVector(2);
+  break;
+  case 3:
+    hasilVector=norm(Va);
+    drawVector(2);
+  break;
+  case 4:
+    hasilVector=mult(float(textfield5.getText()),Va);
+    drawVector(2);
+  break;
+  case 5:
+    label8.setText(Float.toString(dot(Va,Vb)));
+  break;
+  }
+}
+
 
 void draw() {
   background(255);
@@ -144,7 +184,9 @@ void draw() {
   /* y = 2x + 4
    * m = 2, c = 4
    */
-  drawVector();
+  drawVector(1);
+  drawVector(2);
+  //pilihMenu(0);
   //Vector2f x= mult(10,new Vector2f(8, 6)); 
   //print(x.x +" " +x.y);
   //noLoop();

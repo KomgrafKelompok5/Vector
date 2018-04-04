@@ -31,6 +31,7 @@ public void button1_click1(GButton source, GEvent event) { //_CODE_:button1:7753
    vectors.add(new Vector2f(int(textfield1.getText()), int(textfield2.getText())));
    textfield1.setText("");
    textfield2.setText("");
+  
 } //_CODE_:button1:775357:
 
 public void textfield3_change1(GTextField source, GEvent event) { //_CODE_:textfield3:977619:
@@ -58,6 +59,67 @@ public void textfield4_change1(GTextField source, GEvent event) { //_CODE_:textf
   println("textfield4 - GTextField >> GEvent." + event + " @ " + millis());
 } //_CODE_:textfield4:847512:
 
+public void button3_click1(GButton source, GEvent event) { //_CODE_:button3:693907:
+  println("button3 - GButton >> GEvent." + event + " @ " + millis());
+  if(indekVa>0){
+      label4.setText(Float.toString(vectors.get(--indekVa).x)+" , "+Float.toString(vectors.get(indekVa).y));
+       Va=vectors.get(indekVa);
+  }
+} //_CODE_:button3:693907:
+
+public void button4_click1(GButton source, GEvent event) { //_CODE_:button4:955373:
+  println("button4 - GButton >> GEvent." + event + " @ " + millis());
+  if(indekVa<vectors.size()-1){
+      label4.setText(Float.toString(vectors.get(++indekVa).x)+" , "+Float.toString(vectors.get(indekVa).y));
+      Va=vectors.get(indekVa);
+  }
+} //_CODE_:button4:955373:
+
+public void button5_click1(GButton source, GEvent event) { //_CODE_:button5:321965:
+  println("button5 - GButton >> GEvent." + event + " @ " + millis());
+  if(indekVb<vectors.size()-1){
+      label5.setText(Float.toString(vectors.get(++indekVb).x)+" , "+Float.toString(vectors.get(indekVb).y));
+      Vb=vectors.get(indekVb);
+  }
+} //_CODE_:button5:321965:
+
+public void button6_click1(GButton source, GEvent event) { //_CODE_:button6:915502:
+  println("button6 - GButton >> GEvent." + event + " @ " + millis());
+  if(indekVb>0){
+      label5.setText(Float.toString(vectors.get(--indekVb).x)+" , "+Float.toString(vectors.get(indekVb).y));
+      Vb=vectors.get(indekVb);
+  }
+} //_CODE_:button6:915502:
+
+public void button7_click1(GButton source, GEvent event) { //_CODE_:button7:354929:
+  println("button7 - GButton >> GEvent." + event + " @ " + millis());
+  pilihMenu(2);
+} //_CODE_:button7:354929:
+
+public void button8_click1(GButton source, GEvent event) { //_CODE_:button8:959597:
+  println("button8 - GButton >> GEvent." + event + " @ " + millis());
+  pilihMenu(5);
+} //_CODE_:button8:959597:
+
+public void button9_click1(GButton source, GEvent event) { //_CODE_:button9:881996:
+  println("button9 - GButton >> GEvent." + event + " @ " + millis());
+  pilihMenu(3);
+} //_CODE_:button9:881996:
+
+public void button10_click1(GButton source, GEvent event) { //_CODE_:button10:970630:
+  println("button10 - GButton >> GEvent." + event + " @ " + millis());
+  pilihMenu(4);
+} //_CODE_:button10:970630:
+
+public void textfield5_change1(GTextField source, GEvent event) { //_CODE_:textfield5:587145:
+  println("textfield5 - GTextField >> GEvent." + event + " @ " + millis());
+} //_CODE_:textfield5:587145:
+
+public void button11_click1(GButton source, GEvent event) { //_CODE_:button11:947007:
+  println("button11 - GButton >> GEvent." + event + " @ " + millis());
+  pilihMenu(1);
+} //_CODE_:button11:947007:
+
 
 
 // Create all the GUI controls. 
@@ -67,7 +129,7 @@ public void createGUI(){
   G4P.setGlobalColorScheme(GCScheme.BLUE_SCHEME);
   G4P.setCursor(ARROW);
   surface.setTitle("Sketch Window");
-  window1 = GWindow.getWindow(this, "Control", 0, 0, 220, 300, JAVA2D);
+  window1 = GWindow.getWindow(this, "Control", 0, 0, 220, 400, JAVA2D);
   window1.noLoop();
   window1.addDrawHandler(this, "win_draw1");
   textfield1 = new GTextField(window1, 15, 29, 52, 25, G4P.SCROLLBARS_NONE);
@@ -100,6 +162,56 @@ public void createGUI(){
   label3.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
   label3.setText("--");
   label3.setOpaque(false);
+  label4 = new GLabel(window1, 13, 155, 183, 21);
+  label4.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
+  label4.setText("Vektor a");
+  label4.setOpaque(false);
+  button3 = new GButton(window1, 63, 181, 42, 19);
+  button3.setText("-");
+  button3.addEventHandler(this, "button3_click1");
+  button4 = new GButton(window1, 109, 182, 42, 19);
+  button4.setText("+");
+  button4.addEventHandler(this, "button4_click1");
+  label5 = new GLabel(window1, 14, 205, 184, 20);
+  label5.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
+  label5.setText("Vektor b");
+  label5.setOpaque(false);
+  button5 = new GButton(window1, 108, 230, 42, 19);
+  button5.setText("+");
+  button5.addEventHandler(this, "button5_click1");
+  button6 = new GButton(window1, 62, 231, 42, 19);
+  button6.setText("-");
+  button6.addEventHandler(this, "button6_click1");
+  label6 = new GLabel(window1, 7, 156, 35, 20);
+  label6.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
+  label6.setText("V1");
+  label6.setOpaque(false);
+  label7 = new GLabel(window1, 9, 204, 33, 20);
+  label7.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
+  label7.setText("V2");
+  label7.setOpaque(false);
+  button7 = new GButton(window1, 84, 255, 45, 30);
+  button7.setText("Sub");
+  button7.addEventHandler(this, "button7_click1");
+  button8 = new GButton(window1, 12, 326, 78, 30);
+  button8.setText("Dot");
+  button8.addEventHandler(this, "button8_click1");
+  button9 = new GButton(window1, 147, 255, 48, 30);
+  button9.setText("Norm V1");
+  button9.addEventHandler(this, "button9_click1");
+  button10 = new GButton(window1, 11, 291, 80, 30);
+  button10.setText("Mult V1");
+  button10.addEventHandler(this, "button10_click1");
+  textfield5 = new GTextField(window1, 96, 291, 90, 30, G4P.SCROLLBARS_NONE);
+  textfield5.setOpaque(true);
+  textfield5.addEventHandler(this, "textfield5_change1");
+  button11 = new GButton(window1, 20, 254, 47, 30);
+  button11.setText("Add");
+  button11.addEventHandler(this, "button11_click1");
+  label8 = new GLabel(window1, 97, 333, 96, 20);
+  label8.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
+  label8.setText("--");
+  label8.setOpaque(false);
   window1.loop();
 }
 
@@ -115,3 +227,18 @@ GTextField textfield3;
 GButton button2; 
 GTextField textfield4; 
 GLabel label3; 
+GLabel label4; 
+GButton button3; 
+GButton button4; 
+GLabel label5; 
+GButton button5; 
+GButton button6; 
+GLabel label6; 
+GLabel label7; 
+GButton button7; 
+GButton button8; 
+GButton button9; 
+GButton button10; 
+GTextField textfield5; 
+GButton button11; 
+GLabel label8; 
