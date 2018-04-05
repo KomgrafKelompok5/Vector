@@ -106,11 +106,13 @@ void drawVector(int pilih) {
     popMatrix();
   }
   else if(pilih==2){
+    pushMatrix();
     stroke(255, 0, 255);
      strokeWeight(1.2);
     line(0, 0, hasilVector.x * gridSize, hasilVector.y * gridSize);
     if(hasilVector.y!=0 &&hasilVector.x!=0)drawArrow(hasilVector);
     printLabel(hasilVector.x, hasilVector.y);
+     popMatrix();
   }
   
 }
@@ -179,7 +181,9 @@ void pilihMenu(int menu){
 void draw() {
   background(255);
   translate(width/ 2, height/ 2);
-  createGrid();
+  try{
+    createGrid();}
+    cacth()
   scale(1, -1);
   /* y = 2x + 4
    * m = 2, c = 4
